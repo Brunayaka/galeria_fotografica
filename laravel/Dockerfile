@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:8.2-apache
 
 RUN apt-get update
 
@@ -16,7 +16,9 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
-    g++
+    g++ \
+    libonig-dev \
+    libzip-dev
 
 # 2. apache configs + document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public

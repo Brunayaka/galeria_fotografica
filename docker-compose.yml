@@ -26,20 +26,6 @@ services:
       - MYSQL_PASSWORD=secret
     networks:
       - backend
-  mvc:
-    build: ./dockerfiles/mvc
-    container_name: mvc
-    hostname: mvc
-    volumes:
-      - ./data/mvc:/var/www/html
-    depends_on:
-      - db
-    environment:
-      - VIRTUAL_HOST=mvc.local,www.mvc.local
-    restart: always
-    networks:
-      - frontend
-      - backend
   laravel:
     build:
       context: './laravel'
@@ -54,23 +40,6 @@ services:
       - VIRTUAL_HOST=laravel.local
     volumes:
       - ./data/laravel:/var/www/html
-    networks:
-      - frontend
-      - backend
-  laravel9:
-    build:
-      context: './laravel9'
-      args:
-        uid: ${UID}
-    container_name: laravel9
-    depends_on:
-      - db
-    environment:
-      - APACHE_RUN_USER=#${UID}
-      - APACHE_RUN_GROUP=#${UID}
-      - VIRTUAL_HOST=laravel9.local
-    volumes:
-      - ./data/laravel9:/var/www/html
     networks:
       - frontend
       - backend
