@@ -26,20 +26,20 @@ services:
       - MYSQL_PASSWORD=secret
     networks:
       - backend
-  laravel:
+  galeria:
     build:
-      context: './laravel'
+      context: './galeria-fotografica'
       args:
         uid: ${UID}
-    container_name: laravel
+    container_name: galeria-fotografica
     depends_on:
       - db
     environment:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${UID}
-      - VIRTUAL_HOST=laravel.local
+      - VIRTUAL_HOST=galeria.local
     volumes:
-      - ./data/laravel:/var/www/html
+      - ./data/galeria-fotografica:/var/www/html
     networks:
       - frontend
       - backend
